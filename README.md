@@ -1,2 +1,2 @@
-ivans-web-template
+Web template page
 ==================
