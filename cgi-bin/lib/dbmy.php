@@ -1,5 +1,8 @@
 <?php
 
+/**
+* @author ivansklempej
+*/
 
 class dbmy extends mysqli{
 

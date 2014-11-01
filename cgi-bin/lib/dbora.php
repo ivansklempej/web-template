@@ -1,5 +1,10 @@
 <?php
 
+
+/**
+* @author ivansklempej
+*/
+
 class dbora {
 
     private $config;

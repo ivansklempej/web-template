@@ -1,5 +1,10 @@
 <?php
 
+
+/**
+* @author ivansklempej
+*/
+
 class dblite extends SQlite3 {
 
     public function __construct( $dbfile ){
