@@ -31,9 +31,12 @@ class API {
 	$this->config = parse_ini_file($config_file, true);
 	
     }
+    public function greetings( $user_name ){
+        return $this->_genResponse("OK", "Heloo $user_name, Welcome!");
+    }
 
     public function helloWorld (){
-	return $this->_genResponse ( "OK", "hello world");
+    	return $this->_genResponse ( "OK", "hello world");
     }
 
 

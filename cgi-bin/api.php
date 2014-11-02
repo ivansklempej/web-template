@@ -25,6 +25,9 @@ switch ($action){
 		$api = new API();
 		$rv = $api->helloWorld();
 		break;
+    case 'greeting':
+        $user_name = $_POST['user_name'];
+        $rv = $api->greetings($user_name);
 	default:
 		$rv = array( 'status' => "NOK", 'message' => "Route not recognized!");
 
