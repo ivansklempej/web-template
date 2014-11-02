@@ -32,7 +32,7 @@ class API {
 	
     }
     public function greetings( $user_name ){
-        return $this->_genResponse("OK", "Heloo $user_name");
+        return $this->_genResponse("OK", "Heloo $user_name, Welcome!");
     }
 
     public function helloWorld (){
