@@ -1,9 +1,10 @@
 <?php
 
-/**
-*
-* @author ivansklempej
-*/
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 /**
  * Library includes
  */
@@ -14,7 +15,7 @@
 /**
  * Description of API
  *
- * @author ivansklempej
+ * @author ivans
  */
 
 
@@ -23,21 +24,54 @@ class API {
     
     private $config_file = "../config/config.ini.php";
     private $config;
-    
-    public function __construct (){
-	/*
-	 * Config file parser
-	 */
-	$this->config = parse_ini_file($config_file, true);
-	
-    }
-    public function greetings( $user_name ){
-        return $this->_genResponse("OK", "Heloo $user_name, Welcome!");
-    }
 
-    public function helloWorld (){
-    	return $this->_genResponse ( "OK", "hello world");
+	private $req_params;
+    
+    public function __construct ( $req_params = [] ){
+		/*
+	 	* Config file parser
+		*/
+		$this->config = parse_ini_file($this->config_file, true);
+		$this->req_params = $req_params;
+		
     }
+	
+	/**
+	 * 
+	 * 		run method is called on API object to work start execution of logic
+	 * for handling api request
+	 * 
+	 * @return returns api response body
+	 */
+	public function run(){
+
+		$args = $this->_processApi();
+		
+		return $this->_genResponse($args[0], $args[1]);
+		
+	}
+
+
+	private function _processApi (){
+		
+		$action = $this->req_params[0];
+		$arguments = array_splice( $this->req_params,1);	
+		
+		switch( $action ){
+			case 'bla':
+				//TODO do work;
+				$status = "OK";
+				$return_data = 'BLA BLA BLA BLA BLA';
+				break;
+			default:
+				$status = "error";
+				$return_data = "No route defined for $action. Params => $arguments";
+
+			
+		}
+		
+		return array($status, $return_data);
+	}
 
 
     /**
@@ -50,11 +84,11 @@ class API {
      */
     private function _genResponse( $status, $data){
 
-	$response = array (
+	$response_body = array (
 	    'status' => $status,
 	    'data' => $data,
 	);
-	return $response;
+	return $response_body;
 	
     }
     
