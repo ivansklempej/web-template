@@ -1,47 +1,39 @@
 <?php
 
 /**
-* Description of api
-*
-* @author ivansklempej
-*/
+ * Description of api
+ *
+ * @author ivansklempej
+ */
 /**
-* Includes
-*/
-
+ * Includes
+ */
 require_once "modules/API.php";
 
 
-$action = $_GET['action'];
+/**
+ * Take full server URI and devide it to paramas
+ */
+$params = explode('/',  \trim($_SERVER['REQUEST_URI'],'/'));
+/**
+ * Remove first arguments from array params
+ */
+$_P = array_splice($params, 1);
+
 
 /**
-* Handler for API calls
-*/
+ * Handler for API calls
+ */
 
+$api = new API($_P);
 
-switch ($action){
-
-	case 'hello':
-		$api = new API();
-		$rv = $api->helloWorld();
-		break;
-    case 'greeting':
-        $user_name = $_POST['user_name'];
-        $rv = $api->greetings($user_name);
-	default:
-		$rv = array( 'status' => "NOK", 'message' => "Route not recognized!");
-
-
-}
+$response_body = $api->run();
 
 /**
-* Set header ContentType to JSON
-*/
+ * Set header ContentType to JSON
+ */
 header("Content-Type: application/json");
-
 /**
-* Encode return value $rv to JSON
-*/
-print json_encode($rv);
-
-
+ * Encode return value $rv to JSON
+ */
+print json_encode($response_body);
