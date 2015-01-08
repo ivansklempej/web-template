@@ -1,0 +1,7 @@
+
+
+Installation 
+
+rewrite for api.php must be added.
+	rewrite ^/web-template/app/* /web-template/app/api.php break;
+

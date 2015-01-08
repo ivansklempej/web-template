@@ -14,17 +14,17 @@ set_include_path(get_include_path() . PATH_SEPARATOR . __DIR__);
 
 require_once "lib/autoloader.php";
 
-  Autoloader::create('lib/classes.cache', array('3rdparty', '\.svn', '^images$')); 
+Autoloader::create('lib/classes.cache', array('3rdparty', '\.svn', '^images$')); 
 
 
 /**
 * Take full server URI and devide it to paramas
 */
-$params = explode('/', \trim($_SERVER['REQUEST_URI'],'/'));
+$params = explode('/', \trim(filter_input(INPUT_SERVER, 'REQUEST_URI'),'/'));
 /**
 * Remove first arguments from array params
 */
-$_P = array_splice($params, 1);
+$_P = array_splice($params, 2);
 /**
 * Handler for API calls
 */

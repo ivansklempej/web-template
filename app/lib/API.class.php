@@ -83,9 +83,10 @@ class API {
 	private function _processApi() {
 		$action = $this->req_args[0];
 		$arguments = array_splice($this->req_args, 1);
+		$x_method = filter_input(INPUT_SERVER, 'REQUEST_METHOD');
 			if(class_exists($action)){
 				$status = "OK";
-				$object = new $action;
+				$object = new $action($x_method);
 				$return_data = $object->run( $arguments );
 			} else {
 				$status = "error";
