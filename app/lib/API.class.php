@@ -12,8 +12,8 @@
  *
  *
  *
- * @author Ivan Sklempej <ivan.sklempej@iskon.hr>
- * @copyright (c) 2014, Iskon internet d.d.
+ * @author Ivan Sklempej <ivan.sklempej@gmail.com>
+ * @copyright (c) 2015
  *
  * @package API
  */

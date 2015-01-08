@@ -2,7 +2,7 @@
 /**
 * Description of api
 *
-* @author ivansklempej
+* @author Ivan Sklempej <ivan.sklempej@gmail.com>
 */
 
 set_include_path(get_include_path() . PATH_SEPARATOR . __DIR__);
