@@ -1,14 +1,38 @@
 <?php
 
+/**
+ * Summary for file
+ * @filesource
+ */
 
 /**
-* @author ivansklempej
-*/
-
+ * Class dbora
+ *
+ *
+ *
+ * @author Ivan Sklempej <ivan.sklempej@iskon.hr>
+ * @copyright (c) 2014, Iskon internet d.d.
+ *
+ * @package Utility\Database
+ */
 class dbora {
 
-    private $config;
-    private $con;
+	/**
+	 * Configuration object
+	 *
+	 * Config object parsed from $config_file ini file
+	 *
+	 * @var object
+	 */
+    private $config = null;
+	/**
+	 * Connection object
+	 *
+	 * Database connection object 
+	 *
+	 * @var object
+	 */
+	private $con;
 
     public function __construct ( $db = 'defaultdb' ) {
 
