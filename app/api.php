@@ -14,7 +14,7 @@ set_include_path(get_include_path() . PATH_SEPARATOR . __DIR__);
 
 require_once "lib/autoloader.php";
 
-Autoloader::create('lib/classes.cache', array('3rdparty', '\.svn', '^images$')); 
+Autoloader::create('cache/classes.cache', array('3rdparty', '\.svn', '^images$')); 
 
 
 /**

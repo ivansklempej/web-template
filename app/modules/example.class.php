@@ -40,7 +40,7 @@ class example {
 				break;
 		}
 
-		return "BLA BLA BLA";
+		return new Response("ok", NULL, "ALL OK");
 	}
 
 }

@@ -13,7 +13,6 @@
  *
  *
  * @author Ivan Sklempej <ivan.sklempej@gmail.com>
- * @copyright (c) 2015
  *
  * @package API
  */
@@ -69,8 +68,8 @@ class API {
 	 * @return array Api response body.
 	 */
 	public function run() {
-		$args = $this->_processApi();
-		return $this->_genResponse($args[0], $args[1]);
+		$return = $this->_processApi();
+		return $return->getResponse();
 	}
 
 	/**
@@ -78,40 +77,29 @@ class API {
 	 *
 	 * method initializes main class for called module and runs module
 	 *
-	 * @return array array [string $status, array $return_data]
+	 * @return array array [string $status, string $message, array $return_data]
 	 */
 	private function _processApi() {
 		$action = $this->req_args[0];
 		$arguments = array_splice($this->req_args, 1);
-		$x_method = filter_input(INPUT_SERVER, 'REQUEST_METHOD');
-			if(class_exists($action)){
-				$status = "OK";
-				$object = new $action($x_method);
-				$return_data = $object->run( $arguments );
-			} else {
-				$status = "error";
-				$return_data = "No route defined for $action. Params => " . json_encode($arguments);
-			}
-		return array($status, $return_data);
+		
+		$x_method = filter_input( INPUT_SERVER, "REQUEST_METHOD" );
+
+		
+		if (class_exists($action)){
+		
+			$obj = new $action( $x_method );
+			$return = $obj->run( $arguments );
+			
+		} else {
+			$status = "error";
+			$message = "No route defined for $action";
+			$data = $arguments;
+			$return = new Response($status, $data, $message);
+		}
+		return $return;
+		
 	}
 
-	/**
-	 * Generate response
-	 *
-	 * method generates array for response body
-	 *
-	 * @param string $status  eg. "OK", "NOK"
-	 *
-	 * @param array $data any type of data
-	 *
-	 * @return array to be encoded to JSON
-	 */
-	private function _genResponse($status, $data) {
-		$response_body = array(
-			'status' => $status,
-			'data' => $data,
-		);
-		return $response_body;
-	}
 
 }
